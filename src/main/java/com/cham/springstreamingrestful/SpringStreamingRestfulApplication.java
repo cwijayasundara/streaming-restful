@@ -22,7 +22,10 @@ public class SpringStreamingRestfulApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-        Tweet tweet=new Tweet("5", "Tom","I hate football");
-        tweetCassandraRepository.insert(tweet);
+	    for(int count=7; count<100000;count++) {
+	        String countString= Integer.toString(count);
+            Tweet tweet = new Tweet(countString, "Chaminda W", "I love TF");
+            tweetCassandraRepository.insert(tweet).block();
+        }
 	}
 }
